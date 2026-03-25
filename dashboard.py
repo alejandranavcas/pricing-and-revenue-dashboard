@@ -70,6 +70,11 @@ discount_rate = df['discount'].mean()
 # Title
 st.title("Pricing & Revenue Dashboard")
 
+st.markdown("""
+**Dashboard Summary:** This interactive dashboard analyzes pricing strategies and revenue performance for a business.
+Using sales data, it explores price elasticity, promotion impacts, segmentation, and trends to inform data-driven pricing decisions.
+""")
+
 ############### KPI Tiles #######################
 st.header("Revenue & Pricing Overview")
 col1, col2, col3, col4 = st.columns(4)
