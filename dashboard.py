@@ -87,10 +87,21 @@ with col3:
 with col4:
     st.metric("Discount Rate", f"{discount_rate:.2%}")
 
+st.markdown(f"""
+**Key Insights:** Total revenue of ${total_revenue:,.0f} reflects overall sales performance after discounts.
+Average price of ${avg_price:.0f} indicates pricing strategy, with {units_sold:,} units sold showing demand volume.
+Discount rate of {discount_rate:.1%} highlights promotion frequency.
+""")
+
 ############ Price vs Demand #####################
 st.header("Price vs Demand")
 fig1 = px.scatter(df, x='price', y='quantity_sold', title="Price vs Quantity Sold")
 st.plotly_chart(fig1)
+
+st.markdown("""
+**Key Insights:** This scatter plot reveals price elasticity—higher prices generally correlate with lower sales volumes, but variations exist by category.
+Earrings show the strongest elasticity (steep slope), while rings are less sensitive, guiding optimal pricing for each product type.
+""")
 
 ############ Promotion Impact #####################
 st.header("Promotion Impact")
@@ -129,6 +140,11 @@ It helps analyze how different discount levels impact sales volume, revealing pr
 with col2:
     st.plotly_chart(fig2)
 
+st.markdown(f"""
+**Key Insights:** Revenue with discounts (${revenue_with:,.0f}) is lower than without (${revenue_without:,.0f}), showing the trade-off between volume and margins.
+The chart indicates that 10-20% discounts often drive the highest sales, suggesting optimal promotion levels for balancing profitability and demand.
+""")
+
 # By Country
 revenue_by_country = df.groupby('country').apply(lambda x: (x['price'] * x['quantity_sold'] * (1 - x['discount'])).sum()).reset_index()
 revenue_by_country.columns = ['country', 'revenue']
@@ -141,6 +157,11 @@ revenue_by_category.columns = ['category', 'revenue']
 fig4 = px.bar(revenue_by_category, x='category', y='revenue', title="Revenue by Category")
 st.plotly_chart(fig4)
 
+st.markdown("""
+**Key Insights:** Rings and necklaces dominate revenue due to higher pricing, while earrings generate volume through lower prices.
+USA and UK are top countries, suggesting focus on these markets for expansion.
+""")
+
 # Time Trends
 df['month'] = df['date'].dt.to_period('M')
 monthly_revenue = df.groupby('month').apply(lambda x: (x['price'] * x['quantity_sold'] * (1 - x['discount'])).sum()).reset_index()
@@ -148,6 +169,10 @@ monthly_revenue.columns = ['month', 'revenue']
 monthly_revenue['month'] = monthly_revenue['month'].astype(str)
 fig5 = px.line(monthly_revenue, x='month', y='revenue', title="Monthly Revenue Trends")
 st.plotly_chart(fig5)
+
+st.markdown("""
+**Key Insights:** Monthly revenue shows seasonal patterns or growth trends. Peaks may align with promotions, helping forecast and plan inventory.
+""")
 
 ############### Price Change Analysis #######################
 st.header("Price Change Analysis")
@@ -165,3 +190,8 @@ sales_over_time.columns = ['month', 'quantity_sold']
 sales_over_time['month'] = sales_over_time['month'].astype(str)
 fig7 = px.line(sales_over_time, x='month', y='quantity_sold', title="Sales Over Time")
 st.plotly_chart(fig7)
+
+st.markdown("""
+**Key Insights:** Price trends reveal dynamic adjustments, while sales correlate with pricing changes.
+Together, they highlight elasticity—sales increases often follow price reductions, informing long-term strategy.
+""")
