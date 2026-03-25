@@ -88,8 +88,8 @@ with col4:
     st.metric("Discount Rate", f"{discount_rate:.2%}")
 
 st.markdown(f"""
-**Key Insights:** Total revenue of ${total_revenue:,.0f} reflects overall sales performance after discounts.
-Average price of ${avg_price:.0f} indicates pricing strategy, with {units_sold:,} units sold showing demand volume.
+**Key Insights:** Total revenue of \${total_revenue:,.0f} reflects overall sales performance after discounts.
+Average price of \${avg_price:.0f} indicates pricing strategy, with {units_sold:,} units sold showing demand volume.
 Discount rate of {discount_rate:.1%} highlights promotion frequency.
 """)
 
@@ -141,7 +141,7 @@ with col2:
     st.plotly_chart(fig2)
 
 st.markdown(f"""
-**Key Insights:** Revenue with discounts (${revenue_with:,.0f}) is lower than without (${revenue_without:,.0f}), showing the trade-off between volume and margins.
+**Key Insights:** Revenue with discounts (\${revenue_with:,.0f}) is lower than without (\${revenue_without:,.0f}), showing the trade-off between volume and margins.
 The chart indicates that 10-20% discounts often drive the highest sales, suggesting optimal promotion levels for balancing profitability and demand.
 """)
 
